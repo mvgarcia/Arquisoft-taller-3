@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.core import serializers
 from .models import Measurement
 from .forms import MeasurementForm
+import json
+from django.shortcuts import get_object_or_404
 #from rest_framework.decorators import api_view
 
 # Create your views here.
@@ -22,12 +24,12 @@ def delete_measurement(request, id=None):
     mensage = delete_measurement_id(id=id)
     return HttpResponse(mensage)
 
-def save_measurement_form(request, form):
+"""def save_measurement_form(request, form):
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
+            form.save()"""
 
-def update_measurement(request, pk):
+"""def update_measurement(request, pk):
     measurement = get_object_or_404(Measurement, pk=pk)
     if request.method == 'POST':
         form = MeasurementForm(request.POST)
@@ -36,22 +38,14 @@ def update_measurement(request, pk):
     else:
         form = MeasurementForm()
 
-    return render(request, 'update.html', {'form': form})
-
-"""def update_measurement(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = NameForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = MeasurementForm()
-
     return render(request, 'update.html', {'form': form})"""
+
+def prueba(request,id):
+    if request.method == 'PUT':
+        measurement = get_object_or_404(Measurement,pk=id)
+        print(measurement.value)
+        measurement_body = json.loads(request.body)
+        measurement.value = measurement_body['value']
+        measurement.save()
+
+        return HttpResponse(measurement, content_type='application/json')
