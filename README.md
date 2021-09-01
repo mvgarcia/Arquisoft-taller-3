@@ -20,4 +20,7 @@ Después de borrar
 
 ![image](https://user-images.githubusercontent.com/36575846/131282786-80fe11ec-aa33-40b9-b6d8-e9265e08f352.png)
 
+UPDATE 
+
+![image](https://user-images.githubusercontent.com/36575846/131591832-0f89f93d-7d61-437e-b2b0-111e369413a5.png)
 
